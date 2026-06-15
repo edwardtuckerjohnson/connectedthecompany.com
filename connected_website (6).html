@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ConnectED The Company | Sales Enablement Specialists</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #009ADE;
+    --blue-dark: #0077B0;
+    --blue-light: #33B1E8;
+    --blue-pale: #E6F6FD;
+    --white: #FFFFFF;
+    --off-white: #F4F8FB;
+    --ink: #0D1B2A;
+    --ink-mid: #1E2F42;
+    --ink-soft: #5A7090;
+    --border: rgba(0,154,222,0.2);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Open Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--white); border-bottom: 2px solid var(--blue); padding: 0 3rem; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; }
+  .nav-logo span { color: var(--ink); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--ink); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; border-bottom: 2px solid transparent; padding-bottom: 2px; }
+  .nav-links a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; align-items: center; background: var(--ink); position: relative; overflow: hidden; padding: 68px 0 0; }
+  .hero-accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--blue); }
+  .hero-bg-circle { position: absolute; right: -200px; top: -200px; width: 700px; height: 700px; border-radius: 50%; border: 1px solid rgba(0,154,222,0.1); }
+  .hero-bg-circle2 { position: absolute; right: -50px; top: -50px; width: 450px; height: 450px; border-radius: 50%; border: 1px solid rgba(0,154,222,0.15); }
+  .hero-bg-dot-grid { position: absolute; inset: 0; background-image: radial-gradient(rgba(0,154,222,0.12) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none; }
+  .hero-inner { max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 1fr 440px; gap: 4rem; align-items: center; }
+  .hero-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 2px; background: var(--blue); }
+  .hero-headline { font-family: 'Montserrat', sans-serif; font-size: clamp(2.4rem, 4.5vw, 4rem); line-height: 1.05; font-weight: 900; color: var(--white); text-transform: uppercase; margin-bottom: 1.75rem; letter-spacing: -0.01em; }
+  .hero-headline span { color: var(--blue); }
+  .hero-sub { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; max-width: 520px; font-weight: 300; }
+  .btn-blue { display: inline-block; background: var(--blue); color: var(--white); padding: 0.9rem 2.25rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .btn-blue:hover { background: var(--blue-dark); transform: translateY(-2px); }
+  .btn-white-outline { display: inline-block; border: 2px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); padding: 0.9rem 2.25rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin-left: 1rem; }
+  .btn-white-outline:hover { border-color: var(--blue); color: var(--blue); }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,154,222,0.2); border: 1px solid rgba(0,154,222,0.2); }
+  .hero-stat { background: rgba(255,255,255,0.04); padding: 1.75rem 1.5rem; }
+  .hero-stat-num { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--blue); line-height: 1; }
+  .hero-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.4rem; line-height: 1.4; font-weight: 300; }
+  .hero-stat.accent { background: var(--blue); grid-column: span 2; padding: 1.25rem 1.5rem; }
+  .hero-stat.accent .hero-stat-num { font-size: 1rem; color: var(--white); font-weight: 700; letter-spacing: 0.05em; }
+  .hero-stat.accent .hero-stat-label { color: rgba(255,255,255,0.75); }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 3rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .eyebrow { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+  .eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--blue); }
+  .section-title { font-family: 'Montserrat', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; text-transform: uppercase; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .section-title span { color: var(--blue); }
+  .title-rule { width: 48px; height: 3px; background: var(--blue); margin-bottom: 2.5rem; }
+
+  /* SERVICES */
+  .services-bg { background: var(--off-white); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(0,154,222,0.12); }
+  .service-card { background: var(--white); padding: 2.5rem 2rem; border-top: 3px solid transparent; transition: border-color 0.2s, transform 0.2s; }
+  .service-card:hover { border-top-color: var(--blue); transform: translateY(-4px); }
+  .service-num { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; color: var(--blue); margin-bottom: 1.25rem; }
+  .service-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+  .service-title { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; color: var(--ink); }
+  .service-text { font-size: 0.875rem; line-height: 1.75; color: var(--ink-soft); }
+
+  /* MEDDPICC */
+  .meddpicc-bg { background: var(--ink); }
+  .meddpicc-bg .section-title { color: var(--white); }
+  .meddpicc-intro { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.5); max-width: 700px; margin-bottom: 3rem; }
+  .meddpicc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(0,154,222,0.15); }
+  .medd-card { background: var(--ink-mid); padding: 2rem 1.5rem; position: relative; overflow: hidden; transition: background 0.25s; }
+  .medd-card:hover { background: rgba(0,154,222,0.1); }
+  .medd-letter-bg { position: absolute; right: -0.5rem; top: -0.5rem; font-family: 'Montserrat', sans-serif; font-size: 5rem; font-weight: 900; color: rgba(0,154,222,0.08); line-height: 1; pointer-events: none; }
+  .medd-label { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+  .medd-title { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 0.6rem; }
+  .medd-desc { font-size: 0.8rem; line-height: 1.65; color: rgba(255,255,255,0.45); }
+  .medd-card.highlight { border-top: 3px solid var(--blue); }
+  .medd-card.highlight .medd-label { color: var(--blue-light); }
+  .medd-card.highlight .medd-title { color: var(--blue-light); }
+
+  /* METHODOLOGIES */
+  .methods-bg { background: var(--white); }
+  .methods-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .method-card { border: 1px solid rgba(0,154,222,0.15); padding: 2.5rem; position: relative; overflow: hidden; transition: border-color 0.2s; }
+  .method-card:hover { border-color: var(--blue); }
+  .method-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--blue); }
+  .method-name { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; color: var(--ink); }
+  .method-desc { font-size: 0.875rem; line-height: 1.75; color: var(--ink-soft); }
+
+  /* INDUSTRIES + AI */
+  .industries-bg { background: var(--blue); }
+  .industries-bg .eyebrow { color: rgba(255,255,255,0.7); }
+  .industries-bg .eyebrow::before { background: rgba(255,255,255,0.7); }
+  .industries-bg .section-title { color: var(--white); }
+  .industries-bg .section-title span { color: var(--ink); }
+  .industries-bg .title-rule { background: var(--white); }
+  .industries-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+  .industry-tag { border: 1px solid rgba(255,255,255,0.4); padding: 0.6rem 1.25rem; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; color: var(--white); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; transition: all 0.2s; }
+  .industry-tag:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+  .ai-box { background: var(--ink); padding: 2.5rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; }
+  .ai-icon { width: 60px; height: 60px; border: 2px solid var(--blue); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+  .ai-title { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--blue); margin-bottom: 0.5rem; }
+  .ai-text { font-size: 0.875rem; line-height: 1.75; color: rgba(255,255,255,0.55); }
+
+  /* TESTIMONIALS */
+  .testimonials-bg { background: var(--off-white); }
+  .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .testi-card { background: var(--white); padding: 2.5rem; border-top: 3px solid var(--blue); position: relative; }
+  .testi-quote { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; color: var(--blue); opacity: 0.2; line-height: 1; position: absolute; top: 1.25rem; right: 1.5rem; font-weight: 900; }
+  .testi-text { font-size: 0.9rem; line-height: 1.85; color: var(--ink-soft); font-style: italic; }
+  .testi-author { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(0,154,222,0.12); }
+  .author-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink); }
+  .author-role { font-size: 0.8rem; color: var(--blue); margin-top: 0.2rem; font-weight: 600; }
+
+  /* PROFILE */
+  .profile-bg { background: var(--ink); }
+  .profile-bg .section-title { color: var(--white); }
+  .profile-inner { display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start; }
+  .profile-img-wrap { position: relative; flex-shrink: 0; width: 200px; }
+  .profile-img-wrap img { width: 100%; display: block; object-fit: cover; image-rendering: crisp-edges; }
+  .profile-img-border { position: absolute; bottom: -8px; right: -8px; left: 8px; top: 8px; border: 2px solid var(--blue); pointer-events: none; z-index: 0; }
+  .profile-img-wrap img { position: relative; z-index: 1; }
+  .profile-name { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.3rem; }
+  .profile-role { color: var(--blue); font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; }
+  .profile-bio { font-size: 0.9rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 1.5rem; }
+  .certs-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); font-weight: 700; margin-bottom: 0.75rem; }
+  .certs-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+  .cert-badge { border: 1px solid rgba(0,154,222,0.3); padding: 0.35rem 0.85rem; font-size: 0.72rem; color: rgba(255,255,255,0.5); font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 0.05em; }
+  .exp-item { padding: 1.1rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .exp-role { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); }
+  .exp-company { font-size: 0.8rem; color: var(--blue); margin-top: 0.2rem; font-weight: 600; }
+  .exp-dates { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.1rem; }
+
+  /* CTA */
+  .cta-bg { background: var(--blue); color: var(--white); text-align: center; }
+  .cta-title { font-family: 'Montserrat', sans-serif; font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .cta-sub { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 2.5rem; max-width: 540px; margin-left: auto; margin-right: auto; font-weight: 300; line-height: 1.75; }
+  .btn-white { display: inline-block; background: var(--white); color: var(--blue); padding: 1rem 2.5rem; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin: 0 0.5rem; }
+  .btn-white:hover { background: var(--ink); color: var(--white); }
+  .btn-dark-border { display: inline-block; border: 2px solid var(--ink); color: var(--ink); padding: 1rem 2.5rem; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin: 0 0.5rem; }
+  .btn-dark-border:hover { background: var(--ink); color: var(--white); }
+  .cta-contact-line { margin-top: 2rem; font-size: 0.85rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+
+  /* FOOTER */
+  footer { background: var(--ink); padding: 2.5rem 3rem; border-top: 3px solid var(--blue); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Montserrat', sans-serif; color: var(--white); font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; }
+  .footer-logo span { color: var(--blue); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--blue); }
+  .footer-copy { color: rgba(255,255,255,0.2); font-size: 0.75rem; font-family: 'Montserrat', sans-serif; }
+
+  @media (max-width: 900px) {
+    .hero-inner, .profile-inner { grid-template-columns: 1fr; }
+    .meddpicc-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-grid, .methods-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .hero-stats { display: none; }
+    section { padding: 4rem 1.5rem; }
+    nav { padding: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Connect<span>ED</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#meddpicc">MEDDPICC</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-accent-bar"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle2"></div>
+  <div class="hero-bg-dot-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Sales Enablement Specialists</p>
+      <h1 class="hero-headline">Revenue<br>doesn't grow<br>on its own.<br><span>We build<br>the engine.</span></h1>
+      <p class="hero-sub">Bespoke sales enablement programmes designed around your business, your people, and your exact moment of growth — in any industry, anywhere in the world.</p>
+      <a href="#contact" class="btn-blue">Get In Touch</a>
+      <a href="#services" class="btn-white-outline">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">300%</div>
+        <div class="hero-stat-label">YoY growth delivered for a client in year one</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">80%</div>
+        <div class="hero-stat-label">Sales revenue uplift achieved at Yahoo! EMEA</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">20%</div>
+        <div class="hero-stat-label">Client retention improvement in first 12 months</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">11</div>
+        <div class="hero-stat-label">Global locations led simultaneously</div>
+      </div>
+      <div class="hero-stat accent">
+        <div class="hero-stat-num">Fortune 500 · EMEA · APAC · Americas</div>
+        <div class="hero-stat-label">Proven at the world's largest organisations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section-inner">
+    <p class="eyebrow">What We Do</p>
+    <h2 class="section-title">Enabling teams to <span>perform at their peak</span></h2>
+    <div class="title-rule"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">🎯</div>
+        <div class="service-title">Bespoke Enablement Strategy</div>
+        <div class="service-text">No templates. No off-the-shelf playbooks. Every strategy we build starts from your company's specific needs, sales structure, customer profile, and competitive landscape.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">🎓</div>
+        <div class="service-title">Virtual &amp; In-Person Workshops</div>
+        <div class="service-text">From focused 60-minute virtual sessions to full-scale multi-day workshops — all built around the critical need your leadership has identified to move the business forward.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">🤖</div>
+        <div class="service-title">AI-Powered Sales Analytics</div>
+        <div class="service-text">We leverage AI tools to surface real analysis of your team's performance — identifying what's working, where deals are being lost, and what to do about it.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">🔄</div>
+        <div class="service-title">MEDDPICC Implementation</div>
+        <div class="service-text">We build and embed the most rigorous MEDDPICC qualification framework your organisation has ever operated — from Metrics to Competition, every element made real.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-icon">🤝</div>
+        <div class="service-title">Coaching &amp; Leadership Development</div>
+        <div class="service-text">We develop the coaching culture that sustains performance long after our engagement ends — building succession pathways and genuine talent advancement frameworks.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-icon">📊</div>
+        <div class="service-title">KPI Design &amp; Validation</div>
+        <div class="service-text">We identify the right metrics, put them in place, and use data analysis to validate that every enablement initiative is driving measurable commercial outcomes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDDPICC -->
+<section class="meddpicc-bg" id="meddpicc">
+  <div class="section-inner">
+    <p class="eyebrow">Core Framework</p>
+    <h2 class="section-title">The most robust <span>MEDDPICC model</span> possible</h2>
+    <div class="title-rule"></div>
+    <p class="meddpicc-intro">At ConnectED, MEDDPICC isn't just a qualification checklist — it's a full sales conversation methodology. We embed every element into how your team thinks, asks, and sells. Our sharpest focus: Implicate the Pain.</p>
+    <div class="meddpicc-grid">
+      <div class="medd-card">
+        <div class="medd-letter-bg">M</div>
+        <div class="medd-label">Metrics</div>
+        <div class="medd-title">Strong &amp; Measurable</div>
+        <div class="medd-desc">We coach teams to uncover the quantifiable business impact that makes the case for change undeniable. Numbers close deals — vague value does not.</div>
+      </div>
+      <div class="medd-card">
+        <div class="medd-letter-bg">E</div>
+        <div class="medd-label">Economic Buyer</div>
+        <div class="medd-title">Find the Power</div>
+        <div class="medd-desc">Who truly controls the budget and can say yes? We build the skills to identify, access, and influence the real decision-maker — early.</div>
+      </div>
+      <div class="medd-card">
+        <div class="medd-letter-bg">D</div>
+        <div class="medd-label">Decision Criteria</div>
+        <div class="medd-title">Know the Scorecard</div>
+        <div class="medd-desc">The technical, commercial, and personal criteria on which you are being evaluated — understood, shaped, and aligned to your strengths.</div>
+      </div>
+      <div class="medd-card">
+        <div class="medd-letter-bg">D</div>
+        <div class="medd-label">Decision Process</div>
+        <div class="medd-title">Map the Journey</div>
+        <div class="medd-desc">Every step, every stakeholder, every internal gate — mapped and navigated proactively so nothing surprises you in the final stretch.</div>
+      </div>
+      <div class="medd-card">
+        <div class="medd-letter-bg">P</div>
+        <div class="medd-label">Paper Process</div>
+        <div class="medd-title">Own the Close</div>
+        <div class="medd-desc">Legal, procurement, and signature can kill deals late. We train sellers to qualify and actively manage the paper process from day one of the opportunity.</div>
+      </div>
+      <div class="medd-card highlight">
+        <div class="medd-letter-bg">I</div>
+        <div class="medd-label">Implicate the Pain</div>
+        <div class="medd-title">The Heart of It All</div>
+        <div class="medd-desc">Our deepest focus. We develop conversations that uncover and implicate pain — making the cost of inaction feel real, personal, and urgent to the buyer.</div>
+      </div>
+      <div class="medd-card">
+        <div class="medd-letter-bg">C</div>
+        <div class="medd-label">Champion</div>
+        <div class="medd-title">Build Your Ally</div>
+        <div class="medd-desc">A true champion has power, understands your value, and actively sells for you internally. We teach teams to build and sustain them throughout the deal.</div>
+      </div>
+      <div class="medd-card">
+        <div class="medd-letter-bg">C</div>
+        <div class="medd-label">Competition</div>
+        <div class="medd-title">Win the Contrast</div>
+        <div class="medd-desc">We build the competitive intelligence discipline and positioning confidence to ensure the comparison between you and alternatives always works in your favour.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGIES -->
+<section class="methods-bg" id="methodology">
+  <div class="section-inner">
+    <p class="eyebrow">Sales Methodologies</p>
+    <h2 class="section-title">Proven frameworks. <span>Applied with precision.</span></h2>
+    <div class="title-rule"></div>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">SPIN Selling</div>
+        <div class="method-desc">Certified SPIN® Training Specialists. We build the questioning discipline that transforms sales conversations from pitches into genuine consultative dialogue — uncovering Situation, Problem, Implication, and Need-Payoff with precision.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">Sandler Sales System</div>
+        <div class="method-desc">Proficient in the Sandler Sales Methodology. We apply the psychology of the buyer-seller dynamic to help sellers qualify hard, disqualify early, and close without pressure — operating from a position of confidence and control.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">Command of the Message</div>
+        <div class="method-desc">Ensuring your sellers can articulate your value proposition with precision, consistency, and relevance to any buyer — in any situation, at any stage of the deal. Clarity creates momentum.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">Challenger Sale</div>
+        <div class="method-desc">We develop sellers who teach, tailor, and take control — reframing a customer's thinking and creating the constructive tension that moves deals forward and differentiates you from the competition.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES + AI -->
+<section class="industries-bg">
+  <div class="section-inner">
+    <p class="eyebrow">Industries</p>
+    <h2 class="section-title">Any industry. <span style="color:var(--ink);">Any sector.</span></h2>
+    <div class="title-rule"></div>
+    <p style="color:rgba(255,255,255,0.75); font-size:0.95rem; max-width:640px; line-height:1.8; margin-bottom:2rem; font-weight:300;">Sales principles, buyer psychology, and revenue fundamentals are universal. Our bespoke approach means we adapt to your world entirely. We have deep experience across:</p>
+    <div class="industries-row">
+      <div class="industry-tag">Technology &amp; SaaS</div>
+      <div class="industry-tag">Travel &amp; Tourism</div>
+      <div class="industry-tag">Media &amp; Publishing</div>
+      <div class="industry-tag">Research &amp; Development</div>
+      <div class="industry-tag">Social Media Marketing</div>
+      <div class="industry-tag">Managed Services</div>
+      <div class="industry-tag">Enterprise Software</div>
+      <div class="industry-tag">Financial Services</div>
+      <div class="industry-tag">And any industry you're in</div>
+    </div>
+    <div class="ai-box">
+      <div class="ai-icon">🤖</div>
+      <div>
+        <div class="ai-title">AI-Enhanced Sales Intelligence</div>
+        <div class="ai-text">ConnectED uses cutting-edge AI tools to deliver real analysis back to you — identifying your team's success patterns, flagging where deals are lost, surfacing qualification gaps, and generating insight that drives sharper, faster decisions. Data-driven enablement, not guesswork.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-bg">
+  <div class="section-inner">
+    <p class="eyebrow">Client Feedback</p>
+    <h2 class="section-title">What our <span>clients say</span></h2>
+    <div class="title-rule"></div>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-text">Ed is one of a kind. He got up to speed quickly and thoroughly on our business, understood key points of differentiation, asked the questions that needed to be asked, and generally did a fantastic job onboarding and training new staff. Ed is personable, smart and thorough in his preparation and understanding of his clients' business. I wholeheartedly endorse Ed for training if you are in need of a true professional.</div>
+        <div class="testi-author">
+          <div class="author-name">Senior Leader</div>
+          <div class="author-role">TripAdvisor</div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-text">Ed helped shape the content so that the teams would best understand the different complexities and challenges in the digital arena. He coached and led the sessions so everyone was able to achieve the learning required for them to go out with market leading knowledge and skills — ensuring all commercial teams increased their knowledge and confidence in articulating our rapidly transforming digital solutions.</div>
+        <div class="testi-author">
+          <div class="author-name">Senior Director, Digital Sales</div>
+          <div class="author-role">The Telegraph</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section class="profile-bg" id="about">
+  <div class="section-inner">
+    <p class="eyebrow">Founder</p>
+    <h2 class="section-title" style="color:var(--white);">The person <span>behind ConnectED</span></h2>
+    <div class="title-rule"></div>
+    <div class="profile-inner">
+      <div class="profile-img-wrap">
+        <div class="profile-img-border"></div>
+        <img src="data:image/jpeg;base64,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" alt="Edward Johnson, Founder of ConnectED The Company">
+      </div>
+      <div>
+        <div class="profile-name">Edward Johnson</div>
+        <div class="profile-role">Founder &amp; Director — ConnectED The Company</div>
+        <p class="profile-bio">Edward is an innovative, strategic-thinking senior sales enablement executive with over a decade of experience leading global programmes for multi-billion dollar enterprises. He has built and led sales enablement functions at Yahoo!, Socialbakers, TripAdvisor, The Telegraph, and Pax8 — spanning EMEA, APAC, and the Americas.</p>
+        <p class="profile-bio">At ConnectED, Edward brings the same calibre of thinking, relationship-building, and bespoke programme design that he delivered for Fortune 500 clients — now available to any organisation ready to invest seriously in how their people sell.</p>
+        <div class="certs-label">Certifications &amp; Credentials</div>
+        <div class="certs-list">
+          <span class="cert-badge">Certified SPIN® Specialist</span>
+          <span class="cert-badge">Six Sigma White Belt</span>
+          <span class="cert-badge">Salesforce Lightning Specialist</span>
+          <span class="cert-badge">ASTD Member</span>
+          <span class="cert-badge">Siebel 7.5 Specialist</span>
+        </div>
+        <div class="certs-label" style="margin-top:0.5rem;">Career Highlights</div>
+        <div class="exp-item">
+          <div class="exp-role">Revenue Enablement Program Manager</div>
+          <div class="exp-company">Pax8 · Bristol, UK</div>
+          <div class="exp-dates">Nov 2023 – Present</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Director – Sales Enablement</div>
+          <div class="exp-company">EDJ Solutions · TripAdvisor · Telegraph · Salesforce · Feefo · London, UK</div>
+          <div class="exp-dates">2016 – 2023</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Director of Education</div>
+          <div class="exp-company">Socialbakers · 100+ Fortune Global 500 clients · 6 languages · London, UK</div>
+          <div class="exp-dates">2014 – 2016</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Director of Sales L&amp;D, EMEA</div>
+          <div class="exp-company">Yahoo! Ltd. · London, UK</div>
+          <div class="exp-dates">2013 – 2014</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-bg" id="contact">
+  <div class="section-inner" style="text-align:center;">
+    <p class="eyebrow" style="justify-content:center; color:rgba(255,255,255,0.7);">Get In Touch</p>
+    <h2 class="cta-title">Ready to build something exceptional?</h2>
+    <p class="cta-sub">Every ConnectED engagement begins with a conversation about your business, your team, and the specific outcomes you need. No pitch — just a genuine dialogue about how we can help.</p>
+    <a href="mailto:edwardtuckerjohnson49@gmail.com" class="btn-white">Email Edward</a>
+    <p class="cta-contact-line">📞 07976 454 467 &nbsp;·&nbsp; Worthing, UK &nbsp;·&nbsp; Serving clients globally</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Connect<span>ED</span></div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#meddpicc">MEDDPICC</a>
+      <a href="#about">About</a>
+      <a href="mailto:edwardtuckerjohnson49@gmail.com">Contact</a>
+      <a href="https://uk.linkedin.com/in/jolietguru" target="_blank">LinkedIn</a>
+    </div>
+    <div class="footer-copy">© 2025 ConnectED The Company</div>
+  </div>
+</footer>
+
+</body>
+</html>
