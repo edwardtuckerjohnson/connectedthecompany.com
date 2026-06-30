@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="weather-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="weather-container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Weather Dashboard</h1>
+                <div class="search-bar">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Enter city name..." 
+                        autocomplete="off"
+                    >
+                    <button id="searchBtn">Search</button>
+                </div>
+            </div>
+
+            <!-- Current Weather -->
+            <div class="current-weather" id="currentWeather">
+                <div class="loading">Loading weather data...</div>
+            </div>
+
+            <!-- Forecast -->
+            <div class="forecast-section">
+                <h2>5-Day Forecast</h2>
+                <div class="forecast" id="forecast">
+                    <div class="loading">Loading forecast...</div>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message"></div>
+
+            <!-- API Info -->
+            <div class="api-info">
+                <p>Weather data provided by <a href="https://openweathermap.org" target="_blank">OpenWeatherMap</a></p>
+                <p class="note">Note: This demo uses the free tier. For production, get your free API key at openweathermap.org</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="weather-app.js"></script>
+</body>
+</html>
